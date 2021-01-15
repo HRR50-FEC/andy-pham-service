@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = '8080';
+const faker = require('faker');
 
 app.use(express.static('client'));
 app.use(express.urlencoded({ extended: true }));

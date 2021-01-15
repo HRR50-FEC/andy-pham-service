@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
-const daba = mongoose.connect('mongodb://localhost/fec', {useNewUrlParser: true});
+const daba = mongoose.connect('mongodb://localhost/fec', {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
+const rng = require('./randomdata.js');
+const moment = require('moment');
+const faker = require('faker');
 
 const reviewSchema = new mongoose.Schema({
-  username: String,
-  userDP: {type: String, default: null},
-  stars: {type: Number, default: 0},
-  imageUrl: {type: String, default: null},
-  body: String,
-  date: {type: String, default: null}
+  username: {type: String, default: faker.internet.userName},
+  userDP: {type: String, default: rng.dp},
+  stars: {type: Number, default: rng.stars},
+  imageUrl: {type: String, default: rng.product},
+  body: {type: String, default: faker.lorem.sentences},
+  date: {type: String, default: faker.date.recent}
 });
 
 const Review = mongoose.model('Review', reviewSchema);

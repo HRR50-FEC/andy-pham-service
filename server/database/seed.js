@@ -1,22 +1,24 @@
 const database = require('./db.js');
+const rng = require('./randomdata.js');
 
 const lyrics = [
   {
     username: 'YouAre Myfire',
+    userDP: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Backstreet-Boys-dp.jpg',
     stars: 1,
-    imageUrl: 'https://2.bp.blogspot.com/-cn6fSsFjKHo/WYy2wn5iAaI/AAAAAAAACb4/vW8p9M9kMOUBTEegK_H4pqZH1jPxtz5bwCLcBGAs/s400/Desire%2BQuotes%2Bwww.mostphrases.blogspot.com.jpg',
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Desire+Quotes.jpg',
     body: `Believe
     when I say
     I
     want
     it
     that
-    way`,
+    way`
   },
   {
     username: 'Butwe Are',
     stars: 2,
-    imageUrl: 'https://img.artpal.com/637831/3-19-11-20-5-10-25m.jpg',
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Two+worlds+apart.jpg',
     body: `Can't reach to
     your heart
     When you say
@@ -24,25 +26,29 @@ const lyrics = [
     want
     it
     that
-    way`,
+    way`
   },
   {
     username: 'Tellme Why',
-    body: `Ain't nothin' but a heartache`,
+    stars: 1,
+    body: `Ain't nothin' but a heartache`
   },
   {
     username: 'Tellme Why',
-    body: `Ain't nothin' but a mistake`,
+    stars: 1,
+    body: `Ain't nothin' but a mistake`
   },
   {
     username: 'Tellme Why',
+    stars: 1,
     body: `I never wanna hear you say
 
-    I want it that way`,
+    I want it that way`
   },
   {
     username: 'AmI Your',
-    imageUrl: 'https://www.frontierfireprotection.com/wp-content/uploads/freshizer/730cbf2e2455c64c961be8e18e793f6b_3-Things-a-Fire-Needs-2000-c-90.jpg',
+    stars: 1,
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Fire.jpg',
     body: `Your one
     desire
     Yes I know
@@ -51,80 +57,92 @@ const lyrics = [
     want
     it
     that
-    way`,
+    way`
   },
   {
     username: 'Tellme Why',
-    body: `Ain't nothin' but a heartache`,
+    stars: 2,
+    body: `Ain't nothin' but a heartache`
   },
   {
     username: 'Tellme Why',
-    body: `Ain't nothin' but a mistake`,
+    stars: 2,
+    body: `Ain't nothin' but a mistake`
   },
   {
     username: 'Tellme Why',
+    stars: 2,
     body: `I never wanna hear you say
 
-    I want it that way`,
+    I want it that way`
   },
   {
     username: 'NowI Cansee',
+    stars: 2,
     body: `that we've fallen apart
     from the way that it used to be
-    yeah`,
+    yeah`
   },
   {
     username: 'No Matter',
-    imageUrl: 'http://uwimprint.ca/wp-content/uploads/2020/06/Why-is-harder-for-someone-to-keep-social-distance.jpg',
+    stars: 3,
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/apart.jpg',
     body: `I want you to know
-    That deep down inside of me`,
+    That deep down inside of me`
   },
   {
     username: 'YouAre Myfire',
     stars: 1,
-    imageUrl: 'https://2.bp.blogspot.com/-cn6fSsFjKHo/WYy2wn5iAaI/AAAAAAAACb4/vW8p9M9kMOUBTEegK_H4pqZH1jPxtz5bwCLcBGAs/s400/Desire%2BQuotes%2Bwww.mostphrases.blogspot.com.jpg',
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Desire+Quotes.jpg',
     body: `You are.repeat(4)
 
 
-    Don't wanna hear you say`,
+    Don't wanna hear you say`
   },
   {
     username: `Aint Nothin`,
-    imageUrl: 'https://leadstar.us/wp-content/uploads/2018/09/but.jpg',
-    body: `a heartache`,
+    stars: 3,
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/but.jpg',
+    body: `a heartache`
   },
   {
     username: `Aint Nothin`,
-    imageUrl: 'https://leadstar.us/wp-content/uploads/2018/09/but.jpg',
+    stars: 3,
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/but.jpg',
     body: `a mistake
     (Don't wanna hear you say)
 
     I never wanna hear you say
     (Oh, yeah)
-    I want it that way`,
+    I want it that way`
   },
   {
     username: 'Tellme Why',
-    body: `Ain't nothin' but a heartache`,
+    stars: 3,
+    body: `Ain't nothin' but a heartache`
   },
   {
     username: 'Tellme Why',
-    body: `Ain't nothin' but a mistake`,
+    stars: 3,
+    body: `Ain't nothin' but a mistake`
   },
   {
     username: 'Tellme Why',
+    stars: 5,
     body: `I never wanna hear you say
     (Don't wanna hear you say)
-    I want it that way`,
+    I want it that way`
   },
   {
     username: `Tellmewhy Aint'Nothin`,
-    imageUrl: 'https://leadstar.us/wp-content/uploads/2018/09/but.jpg',
-    body: `a heartache`,
+    stars: 5,
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/but.jpg',
+    body: `a heartache`
   },
   {
     username: `Aint Nothin`,
-    imageUrl: 'https://leadstar.us/wp-content/uploads/2018/09/but.jpg',
+    stars: 1,
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/but.jpg',
     body: `a mistake
 
     I never wanna hear you say
@@ -132,20 +150,58 @@ const lyrics = [
     want
     it
     that
-    way`,
+    way`
   },
   {
     username: `Cause`,
     stars: 5,
-    imageUrl: 'https://m.media-amazon.com/images/I/81alCDquxuL._SS500_.jpg',
-    body: ``,
+    imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/I+want+it+that+way.jpg',
+    body: ``
+  },
+  {
+    username: `Trololol`,
+    userDP: `https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Trololol.jpg`,
+    stars: 5,
+    imageUrl: `https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Trololol.jpg`,
+    body: `Trolololololololololololololololol`
+  },
+  {
+    username: `Rick Roll`,
+    userDP: `https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Rick+Roll.png`,
+    stars: 5,
+    imageUrl: `https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Rick+Roll.png`,
+    body: `We're no strangers to love
+    You know the rules, and so do I
+    A full commitment's what I'm thinking of
+    You wouldn't get this from any other guy
+    I
+    just wanna tell you how I'm feeling
+    Gotta make you
+    understand`
+  },
+  {
+    username: `Nevergonna`,
+    stars: 5,
+    body: `Give you up
+    Never gonna let you down
+    Never gonna run around, and desert you
+    Never gonna make you cry
+    Never gonna say goodbye
+    Never gonna tell a lie and hurt you`
   },
 ];
 
 var createData = () => {
-  database.create(lyrics)
+  database.insertMany(lyrics)
     .then(() => {
       console.log('Data created');
+    })
+    .catch(() => {
+      console.error('Data failed');
+    });
+  database.insertMany(Array.apply(null, Array(77)))
+    .then(() => {
+      console.log('Second bath of data created');
     })
     .catch(() => {
       console.error('Data failed');
