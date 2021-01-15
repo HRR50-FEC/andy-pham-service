@@ -1,3 +1,6 @@
+const faker = require('faker');
+const moment = require('moment');
+
 var avatars = [
   null,
   'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/product-review/avatars/1456931809_4ff9ab48a025ff52e4a2ae008b1a6fb2e1f2b56c.jpg',
@@ -74,6 +77,27 @@ var stars = function() {
   return Math.floor(Math.random() * 6);
 }
 
+var productId = function() {
+  return Math.floor(Math.random() * 18);
+};
+
+var color = function () {
+  var result = Math.floor((Math.random() * 2) + 1);
+  if (result === 1) {
+    return faker.commerce.color();
+  } else {
+    return null;
+  }
+};
+
+var date = function () {
+  var date = faker.date.recent();
+  return moment(date).format("MMM Do, YYYY")
+}
+
 module.exports.dp = dp;
 module.exports.product = product;
 module.exports.stars = stars;
+module.exports.productId = productId;
+module.exports.color = color;
+module.exports.date = date;

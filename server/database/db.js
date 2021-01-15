@@ -11,20 +11,22 @@ const reviewSchema = new mongoose.Schema({
   stars: {type: Number, default: rng.stars},
   imageUrl: {type: String, default: rng.product},
   body: {type: String, default: faker.lorem.sentences},
-  date: {type: String, default: faker.date.recent}
+  date: {type: String, default: rng.date},
+  productId: {type: Number, default: rng.productId},
+  color: {type: String, default: rng.color}
 });
 
 const Review = mongoose.model('Review', reviewSchema);
 
 const grab = {
-  default: function() {
-    return db.collection('reviews').find({}).toArray();
+  default: function(id) {
+    return db.collection('reviews').find({productId: id}).sort({_id: 1}).toArray();
   },
-  best: function() {
-    return db.collection('reviews').find({}).sort({stars: 1}).toArray();
+  best: function(id) {
+    return db.collection('reviews').find({productId: id}).sort({stars: -1}).toArray();
   },
-  new: function() {
-    return db.collection('reviews').find({}).sort({date: -1}).toArray();
+  new: function(id) {
+    return db.collection('reviews').find({productId: id}).sort({date: -1}).toArray();
   }
 };
 
