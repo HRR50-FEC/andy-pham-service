@@ -64,24 +64,29 @@ var productPic = [
 ];
 
 var dp = function() {
+  // Selects a random entry from the avatar array
   var index = Math.floor(Math.random() * avatars.length);
   return avatars[index];
 };
 
 var product = function() {
+  // Selects a random entry from the productPic array
   var index = Math.floor(Math.random() * productPic.length);
   return productPic[index];
 };
 
 var stars = function() {
+  // Selects a number from 0-5 for the stars
   return Math.floor(Math.random() * 6);
 }
 
 var productId = function() {
-  return Math.floor(Math.random() * 18);
+  // Selects a number from 1-18 for a product
+  return Math.floor((Math.random() * 18) + 1);
 };
 
 var color = function () {
+  // Selects a random color, or null
   var result = Math.floor((Math.random() * 2) + 1);
   if (result === 1) {
     return faker.commerce.color();
@@ -91,6 +96,7 @@ var color = function () {
 };
 
 var date = function () {
+  // Creates a recent date and converts it to Month Day, Year. Like Jan, 11th, 2021
   var date = faker.date.recent();
   return moment(date).format("MMM Do, YYYY")
 }

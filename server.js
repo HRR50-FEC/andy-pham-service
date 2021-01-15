@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 app.get('/:sort/:productId', (req, res) => {
   var sortBy = req.params.sort;
   var productId = Number(req.params.productId);
+  // Will sort by default, best, or new with the productId that equals the productId coming in
   db.grab[sortBy](productId)
     .then((results) => {
       res.json(results);

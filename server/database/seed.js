@@ -247,6 +247,7 @@ var createData = () => {
     });
   database.insertMany(Array.apply(null, Array(77)))
     .then(() => {
+      // Generates 77 new data entries with all defaults
       console.log('Second bath of data created');
     })
     .catch(() => {
