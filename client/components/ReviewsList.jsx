@@ -1,8 +1,13 @@
 import React from 'react';
 import Reviews from './reviews.jsx';
+import styled, { css } from 'styled-components';
+
+const Container = styled.div`
+  display: grid;
+`
 
 var ReviewsList = ({reviews}) => (
-  <div>
+  <Container>
     {reviews.map((review) => (
       <Reviews key={review._id}
       username={review.username}
@@ -13,7 +18,7 @@ var ReviewsList = ({reviews}) => (
       date={review.date}
       color={review.color} />
     ))}
-  </div>
+  </Container>
 )
 
 export default ReviewsList;
