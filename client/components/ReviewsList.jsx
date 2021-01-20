@@ -6,9 +6,9 @@ const Container = styled.div`
   display: grid;
 `
 
-var ReviewsList = ({reviews}) => (
+var ReviewsList = (props) => (
   <Container>
-    {reviews.map((review) => (
+    {props.reviews.map((review) => (
       <Reviews key={review._id}
       username={review.username}
       userDP={review.userDP}
@@ -18,6 +18,8 @@ var ReviewsList = ({reviews}) => (
       date={review.date}
       color={review.color} />
     ))}
+    <button onClick={props.getPrevious}>Previous</button>
+    <button onClick={props.getNext}>Next</button>
   </Container>
 )
 
