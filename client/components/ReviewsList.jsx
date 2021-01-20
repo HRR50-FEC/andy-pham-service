@@ -4,6 +4,10 @@ import styled, { css } from 'styled-components';
 
 const Container = styled.div`
   display: grid;
+  grid: auto auto auto auto;
+  grid-template-rows: 300px 300px 300px 300px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 30px;
 `
 
 var ReviewsList = (props) => (

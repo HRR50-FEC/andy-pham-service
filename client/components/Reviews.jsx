@@ -10,11 +10,10 @@ const Flex = styled.div`
 `
 
 const Image = styled.img`
-  display: flex;
   width: 150px;
   height: 150px;
   object-fit: fill;
-  justify-content: flex-end;
+  align-self: flex-end;
 `
 const DP = styled.img`
   width: 75px;
@@ -28,17 +27,12 @@ var Reviews = (props) => {
     return (
     <Flex>
       <div>{props.username}</div>
-
       <div><DP src={props.userDP} /></div>
-
       <div>{props.stars}</div>
-      <div><Image src={props.imageUrl}></Image></div>
+      <Image src={props.imageUrl}></Image>
       <div>{props.body}</div>
-
       <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
-
       <div>{props.color}</div>
-
     </Flex>
     )
   }
@@ -46,32 +40,21 @@ var Reviews = (props) => {
     return (
       <Flex>
         <div>{props.username}</div>
-
         <div><DP src={props.userDP} /></div>
-
         <div>{props.stars}</div>
-
         <div>{props.body}</div>
-
         <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
-
         <div>{props.color}</div>
-
       </Flex>
       )
   } else {
     return (
       <Flex>
         <div>{props.username}</div>
-
         <div>{props.stars}</div>
-
         <div>{props.body}</div>
-
         <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
-
         <div>{props.color}</div>
-
       </Flex>
       )
   }
