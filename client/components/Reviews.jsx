@@ -2,11 +2,16 @@ import React from 'react';
 import moment from 'moment';
 import styled, { css } from 'styled-components';
 
-const Flex = styled.div`
+const FlexHeader = styled.div`
   display: flex;
   padding: 1rem;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: flex-start;
+`
+const FlexBody = styled.div`
+  display: flex;
+  padding-left: 48px;
+  align-items: flex-start;
 `
 
 const Image = styled.img`
@@ -14,6 +19,7 @@ const Image = styled.img`
   height: 150px;
   object-fit: fill;
   align-self: flex-end;
+  margin-left: 48px;
 `
 const DP = styled.img`
   width: 75px;
@@ -25,37 +31,52 @@ const DP = styled.img`
 var Reviews = (props) => {
   if (props.imageUrl !== null && props.userDP !== null) {
     return (
-    <Flex>
+      <div>
+    <FlexHeader>
+      <div><DP src={props.userDP}></DP></div>
       <div>{props.username}</div>
-      <div><DP src={props.userDP} /></div>
-      <div>{props.stars}</div>
-      <Image src={props.imageUrl}></Image>
-      <div>{props.body}</div>
       <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
+    </FlexHeader>
+    <FlexBody>
+      <div>{props.stars}</div>
+
       <div>{props.color}</div>
-    </Flex>
+      <div>{props.body}</div>
+      <div><Image src={props.imageUrl}/></div>
+    </FlexBody>
+    </div>
     )
   }
   if (props.imageUrl === null && props.userDP !== null) {
     return (
-      <Flex>
-        <div>{props.username}</div>
-        <div><DP src={props.userDP} /></div>
-        <div>{props.stars}</div>
-        <div>{props.body}</div>
-        <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
-        <div>{props.color}</div>
-      </Flex>
+      <div>
+      <FlexHeader>
+      <div><DP src={props.userDP} /></div>
+      <div>{props.username}</div>
+      <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
+    </FlexHeader>
+    <FlexBody>
+      <div>{props.stars}</div>
+
+      <div>{props.color}</div>
+      <div>{props.body}</div>
+    </FlexBody>
+    </div>
       )
   } else {
     return (
-      <Flex>
-        <div>{props.username}</div>
-        <div>{props.stars}</div>
-        <div>{props.body}</div>
-        <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
-        <div>{props.color}</div>
-      </Flex>
+      <div>
+      <FlexHeader>
+      <div>{props.username}</div>
+      <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
+    </FlexHeader>
+    <FlexBody>
+      <div>{props.stars}</div>
+
+      <div>{props.color}</div>
+      <div>{props.body}</div>
+    </FlexBody>
+    </div>
       )
   }
 }
