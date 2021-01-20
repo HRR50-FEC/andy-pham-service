@@ -8,14 +8,16 @@ class App extends React.Component {
     this.state = {
       sort: 'default',
       product: 1,
-      reviews: []
+      reviews: [],
+      currentReviews: []
     }
   }
 
   componentDidMount() {
     requests.get(this.state.sort, this.state.product, (data) => {
       this.setState({
-        reviews: [...data]
+        reviews: [...data],
+        currentReviews: [...data.splice(0, 4)]
       })
     })
   };
@@ -23,7 +25,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <ReviewsList reviews={this.state.reviews} />
+        <ReviewsList reviews={this.state.currentReviews} />
       </div>
     )
   }

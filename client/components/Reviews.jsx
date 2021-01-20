@@ -4,38 +4,74 @@ import styled, { css } from 'styled-components';
 
 const Flex = styled.div`
   display: flex;
+  padding: 1rem;
   flex-direction: column;
   justify-content: space-between;
 `
 
 const Image = styled.img`
+  display: flex;
   width: 150px;
   height: 150px;
+  object-fit: fill;
+  justify-content: flex-end;
+`
+const DP = styled.img`
+  width: 75px;
+  height: 75px;
   object-fit: fill;
 `
 
 
-
 var Reviews = (props) => {
-  if (props.imageUrl !== null) {
+  if (props.imageUrl !== null && props.userDP !== null) {
     return (
     <Flex>
-      {props.username}
-      {props.stars}
-      <Image src={props.imageUrl}></Image>
-      {props.body}
-      {moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}
-      {props.color}
+      <div>{props.username}</div>
+
+      <div><DP src={props.userDP} /></div>
+
+      <div>{props.stars}</div>
+      <div><Image src={props.imageUrl}></Image></div>
+      <div>{props.body}</div>
+
+      <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
+
+      <div>{props.color}</div>
+
     </Flex>
     )
+  }
+  if (props.imageUrl === null && props.userDP !== null) {
+    return (
+      <Flex>
+        <div>{props.username}</div>
+
+        <div><DP src={props.userDP} /></div>
+
+        <div>{props.stars}</div>
+
+        <div>{props.body}</div>
+
+        <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
+
+        <div>{props.color}</div>
+
+      </Flex>
+      )
   } else {
     return (
       <Flex>
-        {props.username}
-        {props.stars}
-        {props.body}
-        {moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}
-        {props.color}
+        <div>{props.username}</div>
+
+        <div>{props.stars}</div>
+
+        <div>{props.body}</div>
+
+        <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
+
+        <div>{props.color}</div>
+
       </Flex>
       )
   }
