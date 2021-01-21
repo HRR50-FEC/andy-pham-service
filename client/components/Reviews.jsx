@@ -7,24 +7,28 @@ const FlexHeader = styled.div`
   padding: 1rem;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
 `
 const FlexBody = styled.div`
   display: flex;
   padding-left: 48px;
-  align-items: flex-start;
+  height: 244.5px;
+  width: 762px;
 `
 
 const Image = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 178.5px;
+  height: 178.5px;
   object-fit: fill;
   align-self: flex-end;
   margin-left: 48px;
 `
 const DP = styled.img`
-  width: 75px;
-  height: 75px;
+  width: 36px;
+  height: 36px;
   object-fit: fill;
+  border-radius: 50%;
+  margin-right: 12px;
 `
 
 
@@ -34,8 +38,7 @@ var Reviews = (props) => {
       <div>
     <FlexHeader>
       <div><DP src={props.userDP}></DP></div>
-      <div>{props.username}</div>
-      <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
+      <div><p>{props.username}    {moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</p></div>
     </FlexHeader>
     <FlexBody>
       <div>{props.stars}</div>
@@ -67,6 +70,7 @@ var Reviews = (props) => {
     return (
       <div>
       <FlexHeader>
+      <div><DP src={props.userDP} /></div>
       <div>{props.username}</div>
       <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
     </FlexHeader>
