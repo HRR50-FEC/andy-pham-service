@@ -12,8 +12,12 @@ const FlexHeader = styled.div`
 const FlexBody = styled.div`
   display: flex;
   padding-left: 48px;
-  height: 244.5px;
+  height: 178.5px;
   width: 762px;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  align-content: space-between;
 `
 
 const Image = styled.img`
@@ -22,6 +26,7 @@ const Image = styled.img`
   object-fit: fill;
   align-self: flex-end;
   margin-left: 48px;
+  float: right;
 `
 const DP = styled.img`
   width: 36px;
@@ -29,6 +34,11 @@ const DP = styled.img`
   object-fit: fill;
   border-radius: 50%;
   margin-right: 12px;
+`
+
+const Body = styled.div`
+  width: 535.5px;
+  height: 178.5px;
 `
 
 
@@ -55,8 +65,7 @@ var Reviews = (props) => {
       <div>
       <FlexHeader>
       <div><DP src={props.userDP} /></div>
-      <div>{props.username}</div>
-      <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
+      <div>{props.username}    {moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
     </FlexHeader>
     <FlexBody>
       <div>{props.stars}</div>
@@ -71,8 +80,7 @@ var Reviews = (props) => {
       <div>
       <FlexHeader>
       <div><DP src={props.userDP} /></div>
-      <div>{props.username}</div>
-      <div>{moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
+      <div>{props.username}    {moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
     </FlexHeader>
     <FlexBody>
       <div>{props.stars}</div>
