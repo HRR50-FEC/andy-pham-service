@@ -40,11 +40,16 @@ class App extends React.Component {
     requests.get(this.state.sort, this.state.product, (data) => {
       var reviewData = [...data];
       var defaultData = makeGroups(reviewData);
-      var newData = this.sortByNew(reviewData);
       this.setState({
         default: defaultData,
         currentReviews: [...data.splice(0, 4)],
-        new: newData
+      })
+    })
+    requests.get('new', this.state.product, (data) => {
+      var reviewData = [...data];
+      reviewData = makeGroups(reviewData);
+      this.setState({
+        new: reviewData
       })
     })
   };
@@ -87,22 +92,37 @@ class App extends React.Component {
       var left = [];
       var right = [];
       var middle = array[Math.floor(array.length / 2)];
-      var middleDate = Moment(middle.date, 'YYYY-MM-D').format('YYYYMMD');
+      var middleDate = middle.date;
+      // console.log(middleDate);
+      // middleDate = middleDate.split('-');
+      // console.log(middleDate);
+      // middleDate = Number(middleDate.join(''));
+      // console.log(middleDate);
       for (var i = 0; i < array.length; i++) {
-        if (Moment(array[i].date, 'YYYY-MM-D').format('YYYYMMD') < middleDate) {
+        if (Number(array[i].date.split('-').join('')) <= middleDate) {
           left.push(array[i]);
         }
-        if (Moment(array[i].date, 'YYYY-MM-D').format('YYYYMMD') > middleDate) {
+        if (Number(array[i].date.split('-').join('')) > middleDate) {
           right.push(array[i]);
         }
 
       }
-      var result = sortNew(left).concat(middle, sortNew(right));
+      var result = sortNew(right).concat(middle, sortNew(left));
       return result;
     }
 
     newSorted = sortNew(newSorted);
+    console.log(newSorted);
     return newSorted;
+  }
+
+  sortToNew() {
+    console.log(this.state.new);
+    this.setState({
+      sort: 'new',
+      currentReviews: this.state.new[0],
+      currentGroup: 0
+    })
   }
 
   sortByBest() {
@@ -115,7 +135,7 @@ class App extends React.Component {
         <ReviewsList reviews={this.state.currentReviews} getNext={this.getNext.bind(this)}
         getPrevious={this.getPrevious.bind(this)}
         sort={this.state.sort}
-        sortByNew={this.sortByNew.bind(this)}
+        sortToNew={this.sortToNew.bind(this)}
         />
       </div>
     )
