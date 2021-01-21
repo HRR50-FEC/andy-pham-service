@@ -16,3 +16,11 @@ describe('<App />', () => {
     expect(onButtonClick).to.have.property('callCount', 1);
   });
 });
+
+/*
+The above two tests are meant to test if my ReviewsLists component renders with some buttons that function.
+
+I would test during a given review page, there would only be at max 4 reviews. My reasoning is that Etsy, the site my FEC is based on, has 4 reviews per review page.
+
+Another test would test sorting the reviews by New or Best. I might compare the first and last to make sure one is greater than the other, depending on if it's by New or Best.
+*/

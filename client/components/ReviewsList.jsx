@@ -11,6 +11,7 @@ const Container = styled.div`
 
 var ReviewsList = (props) => (
   <Container>
+    <button onClick={props.sortByNew}>New</button>
     {props.reviews.map((review) => (
       <Reviews key={review._id}
       username={review.username}
@@ -21,8 +22,8 @@ var ReviewsList = (props) => (
       date={review.date}
       color={review.color} />
     ))}
-    <button onClick={props.getPrevious}>Previous</button>
-    <button onClick={props.getNext}>Next</button>
+    <button onClick={() => {props.getPrevious(props.sort)}}>Previous</button>
+    <button onClick={() => {props.getNext(props.sort)}}>Next</button>
   </Container>
 )
 

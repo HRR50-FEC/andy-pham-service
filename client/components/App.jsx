@@ -1,6 +1,7 @@
 import React from 'react';
 import requests from './requests.js';
 import ReviewsList from './reviewslist.jsx';
+import Moment from 'moment';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,9 +9,9 @@ class App extends React.Component {
     this.state = {
       sort: 'default',
       product: 1,
-      reviews: [],
-      newReviews: [],
-      bestReviews: [],
+      default: [],
+      new: [],
+      best: [],
       currentReviews: [],
       currentGroup: 0
     }
@@ -38,44 +39,70 @@ class App extends React.Component {
 
     requests.get(this.state.sort, this.state.product, (data) => {
       var reviewData = [...data];
-      reviewData = makeGroups(reviewData);
+      var defaultData = makeGroups(reviewData);
+      var newData = this.sortByNew(reviewData);
       this.setState({
-        reviews: reviewData,
-        currentReviews: [...data.splice(0, 4)]
+        default: defaultData,
+        currentReviews: [...data.splice(0, 4)],
+        new: newData
       })
     })
   };
 
-  getNext() {
-    if (this.state.currentGroup + 1 === this.state.reviews.length) {
+  getNext(sort) {
+    if (this.state.currentGroup + 1 === this.state[sort].length) {
       this.setState({
-        currentReviews: this.state.reviews[0],
+        currentReviews: this.state[sort][0],
         currentGroup: 0
       })
     } else {
       this.setState({
-        currentReviews: this.state.reviews[this.state.currentGroup + 1],
+        currentReviews: this.state[sort][this.state.currentGroup + 1],
         currentGroup: this.state.currentGroup + 1
       })
     }
   }
 
-  getPrevious() {
+  getPrevious(sort) {
     if (this.state.currentGroup === 0) {
       this.setState({
-        currentReviews: this.state.reviews[this.state.reviews.length - 1],
-        currentGroup: this.state.reviews.length - 1
+        currentReviews: this.state[sort][this.state[sort].length - 1],
+        currentGroup: this.state[sort].length - 1
       })
     } else {
       this.setState({
-        currentReviews: this.state.reviews[this.state.currentGroup - 1],
+        currentReviews: this.state[sort][this.state.currentGroup - 1],
         currentGroup: this.state.currentGroup - 1
       })
     }
   }
 
-  sortByNew() {
+  sortByNew(reviews) {
     //placeholder
+    var newSorted = reviews;
+    var sortNew = (array) => {
+      if (array.length <= 1) {
+        return array || [];
+      }
+      var left = [];
+      var right = [];
+      var middle = array[Math.floor(array.length / 2)];
+      var middleDate = Moment(middle.date, 'YYYY-MM-D').format('YYYYMMD');
+      for (var i = 0; i < array.length; i++) {
+        if (Moment(array[i].date, 'YYYY-MM-D').format('YYYYMMD') < middleDate) {
+          left.push(array[i]);
+        }
+        if (Moment(array[i].date, 'YYYY-MM-D').format('YYYYMMD') > middleDate) {
+          right.push(array[i]);
+        }
+
+      }
+      var result = sortNew(left).concat(middle, sortNew(right));
+      return result;
+    }
+
+    newSorted = sortNew(newSorted);
+    return newSorted;
   }
 
   sortByBest() {
@@ -87,6 +114,8 @@ class App extends React.Component {
       <div>
         <ReviewsList reviews={this.state.currentReviews} getNext={this.getNext.bind(this)}
         getPrevious={this.getPrevious.bind(this)}
+        sort={this.state.sort}
+        sortByNew={this.sortByNew.bind(this)}
         />
       </div>
     )
