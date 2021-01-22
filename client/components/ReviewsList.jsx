@@ -7,8 +7,30 @@ const Container = styled.div`
   height: 1151.69px;
   width: 810px;
   grid: auto auto auto auto;
-  grid-template-rows: 300px 300px 300px 300px;
   grid-gap: 30px;
+`
+const Sorting = styled.div`
+  width: 810px;
+  height: 42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`
+
+const DropdownMenu = styled.div`
+  width: 200.797px;
+  height: 42px;
+  text-align: center;
+
+`
+
+const Sorts = styled.div`
+  display: none;
+  position: absolute;
+
+  ${DropdownMenu}:active & {
+    display: block;
+  }
 `
 
 const Button = styled.button`
@@ -24,6 +46,9 @@ var ReviewsList = (props) => (
   <Container>
     <Button onClick={() => {props.sortByNew()}}>New</Button>
     <Button onClick={() => {props.sortByBest()}}>Best</Button>
+    <Sorting>
+      <DropdownMenu>Sort By: <Sorts>123</Sorts></DropdownMenu>
+    </Sorting>
     {props.reviews.map((review) => (
       <Reviews key={review._id}
       username={review.username}

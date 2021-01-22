@@ -39,10 +39,17 @@ const DP = styled.img`
 `
 
 const Body = styled.div`
-  white-space: pre-wrap;
+  height: 72px;
+  width: 535px;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `
+
+const Ellipsis = styled.button`
+  image: url('data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 24 24%22 aria-hidden%3D%22true%22 focusable%3D%22false%22 style%3D%22display%3A inline-block%3B height%3A 24px%3B vertical-align%3A middle%3B%22%3E%3Ccircle cx%3D%2212.0%22 cy%3D%2212.001%22 r%3D%222.71%22%2F%3E%3Ccircle cy%3D%2212.001%22 cx%3D%224.0%22 r%3D%222.71%22%2F%3E%3Ccircle cx%3D%2220.0%22 cy%3D%2212.001%22 r%3D%222.71%22%2F%3E%3C%2Fsvg%3E');
+`
+
 const Header = styled.div`
   text-align: left;
 `
