@@ -16,9 +16,14 @@ const Button = styled.button`
   width: 100px;
 `
 
+const Pages = styled.div`
+
+`
+
 var ReviewsList = (props) => (
   <Container>
-    <Button onClick={() => {props.sortToNew()}}>New</Button>
+    <Button onClick={() => {props.sortByNew()}}>New</Button>
+    <Button onClick={() => {props.sortByBest()}}>Best</Button>
     {props.reviews.map((review) => (
       <Reviews key={review._id}
       username={review.username}

@@ -4,10 +4,9 @@ import styled, { css } from 'styled-components';
 
 const FlexHeader = styled.div`
   display: flex;
-  padding: 1rem;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-text: left;
 `
 const FlexBody = styled.div`
   display: flex;
@@ -18,6 +17,8 @@ const FlexBody = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   align-content: space-between;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const Image = styled.img`
@@ -27,6 +28,7 @@ const Image = styled.img`
   align-self: flex-end;
   margin-left: 48px;
   float: right;
+  border: none;
 `
 const DP = styled.img`
   width: 36px;
@@ -37,60 +39,43 @@ const DP = styled.img`
 `
 
 const Body = styled.div`
-  width: 535.5px;
-  height: 178.5px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+const Header = styled.div`
+  text-align: left;
 `
 
-
 var Reviews = (props) => {
-  if (props.imageUrl !== null && props.userDP !== null) {
+    var image = null;
+    var color = null;
+    var stars = '★'.repeat(props.stars);
+    if (stars.length < 5) {
+      stars += '☆'.repeat(5 - props.stars);
+    }
+    if (props.imageUrl !== null) {
+      image = <Image src={props.imageUrl}/>
+    }
+    if (props.color !== null) {
+      color = `Color: ${props.color}`;
+    }
+
     return (
       <div>
-    <FlexHeader>
-      <div><DP src={props.userDP}></DP></div>
-      <div><p>{props.username}    {moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</p></div>
-    </FlexHeader>
-    <FlexBody>
-      <div>{props.stars}</div>
+      <FlexHeader>
+        <div><DP src={props.userDP}></DP></div>
+        <Header><p><u>{props.username}</u>    {moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</p></Header>
+      </FlexHeader>
+      <FlexBody>
+        <div>{stars}</div>
 
-      <div>{props.color}</div>
-      <div>{props.body}</div>
-      <div><Image src={props.imageUrl}/></div>
-    </FlexBody>
+        <div>{color}</div>
+        <Body>{props.body}</Body>
+        <div>{image}</div>
+      </FlexBody>
     </div>
     )
-  }
-  if (props.imageUrl === null && props.userDP !== null) {
-    return (
-      <div>
-      <FlexHeader>
-      <div><DP src={props.userDP} /></div>
-      <div>{props.username}    {moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
-    </FlexHeader>
-    <FlexBody>
-      <div>{props.stars}</div>
-
-      <div>{props.color}</div>
-      <div>{props.body}</div>
-    </FlexBody>
-    </div>
-      )
-  } else {
-    return (
-      <div>
-      <FlexHeader>
-      <div><DP src={props.userDP} /></div>
-      <div>{props.username}    {moment(props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</div>
-    </FlexHeader>
-    <FlexBody>
-      <div>{props.stars}</div>
-
-      <div>{props.color}</div>
-      <div>{props.body}</div>
-    </FlexBody>
-    </div>
-      )
-  }
 }
 
 export default Reviews;

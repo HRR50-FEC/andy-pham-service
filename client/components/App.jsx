@@ -13,7 +13,8 @@ class App extends React.Component {
       new: [],
       best: [],
       currentReviews: [],
-      currentGroup: 0
+      currentGroup: 0,
+      groups: 0
     }
   }
 
@@ -24,32 +25,44 @@ class App extends React.Component {
       var reviewGroup = [];
       var count = 0;
       while (count < reviews.length) {
+        reviews[count].body = this.parseNewLine(reviews[count].body);
         reviewGroup.push(reviews[count]);
 
-        if (reviewGroup.length < 4) {
-          count++;
-        } else if (reviewGroup.length === 4 || count === reviews.length - 1) {
+
+        if (reviewGroup.length === 4 || count === reviews.length - 1) {
           reviewGroups.push(reviewGroup);
           reviewGroup = [];
+          count++
+        } else {
           count++;
         }
       }
       return reviewGroups;
     }
 
-    requests.get(this.state.sort, this.state.product, (data) => {
+    requests.get('default', this.state.product, (data) => {
       var reviewData = [...data];
       var defaultData = makeGroups(reviewData);
       this.setState({
         default: defaultData,
         currentReviews: [...data.splice(0, 4)],
+        groups: defaultData.length
       })
     })
+
     requests.get('new', this.state.product, (data) => {
       var reviewData = [...data];
-      reviewData = makeGroups(reviewData);
+      var newData = makeGroups(reviewData);
       this.setState({
-        new: reviewData
+        new: newData
+      })
+    })
+
+    requests.get('best', this.state.product, (data) => {
+      var reviewData = [...data];
+      var bestData = makeGroups(reviewData);
+      this.setState({
+        best: bestData
       })
     })
   };
@@ -82,42 +95,7 @@ class App extends React.Component {
     }
   }
 
-  sortByNew(reviews) {
-    //placeholder
-    var newSorted = reviews;
-    var sortNew = (array) => {
-      if (array.length <= 1) {
-        return array || [];
-      }
-      var left = [];
-      var right = [];
-      var middle = array[Math.floor(array.length / 2)];
-      var middleDate = middle.date;
-      // console.log(middleDate);
-      // middleDate = middleDate.split('-');
-      // console.log(middleDate);
-      // middleDate = Number(middleDate.join(''));
-      // console.log(middleDate);
-      for (var i = 0; i < array.length; i++) {
-        if (Number(array[i].date.split('-').join('')) <= middleDate) {
-          left.push(array[i]);
-        }
-        if (Number(array[i].date.split('-').join('')) > middleDate) {
-          right.push(array[i]);
-        }
-
-      }
-      var result = sortNew(right).concat(middle, sortNew(left));
-      return result;
-    }
-
-    newSorted = sortNew(newSorted);
-    console.log(newSorted);
-    return newSorted;
-  }
-
-  sortToNew() {
-    console.log(this.state.new);
+  sortByNew() {
     this.setState({
       sort: 'new',
       currentReviews: this.state.new[0],
@@ -126,7 +104,23 @@ class App extends React.Component {
   }
 
   sortByBest() {
-    //placeholder
+    this.setState({
+      sort: 'best',
+      currentReviews: this.state.best[0],
+      currentGroup: 0
+    })
+  }
+
+  getPage(page) {
+    var sort = this.state.sort;
+    this.setState({
+      currentReviews: this.state[sort][page],
+      currentGroup: page
+    })
+  }
+
+  parseNewLine(text) {
+    return text.split('\n    ').join('\n');
   }
 
   render() {
@@ -135,7 +129,11 @@ class App extends React.Component {
         <ReviewsList reviews={this.state.currentReviews} getNext={this.getNext.bind(this)}
         getPrevious={this.getPrevious.bind(this)}
         sort={this.state.sort}
-        sortToNew={this.sortToNew.bind(this)}
+        sortByNew={this.sortByNew.bind(this)}
+        sortByBest={this.sortByNew.bind(this)}
+        getPage={this.getPage.bind(this)}
+        groups={this.state.groups}
+        currentGroup={this.state.currentGroup}
         />
       </div>
     )
