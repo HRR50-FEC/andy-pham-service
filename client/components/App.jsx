@@ -14,8 +14,11 @@ class App extends React.Component {
       best: [],
       currentReviews: [],
       currentGroup: 0,
-      groups: 0
+      groups: 0,
+      showSort: false
     }
+    this.openSort = this.openSort.bind(this);
+    this.closeSort = this.closeSort.bind(this);
   }
 
   componentDidMount() {
@@ -104,6 +107,7 @@ class App extends React.Component {
   }
 
   sortByBest() {
+    console.log(this.state.best);
     this.setState({
       sort: 'best',
       currentReviews: this.state.best[0],
@@ -123,17 +127,36 @@ class App extends React.Component {
     return text.split('\n    ').join('\n');
   }
 
+  openSort(e) {
+    e.preventDefault();
+    this.setState({
+      showSort: true
+    });
+  }
+
+  closeSort() {
+    if (this.state.showSort === true) {
+      console.log(this.state.showSort);
+      this.setState({
+        showSort: false
+      });
+    };
+  }
+
   render() {
     return(
-      <div>
+      <div onClick={this.closeSort}>
         <ReviewsList reviews={this.state.currentReviews} getNext={this.getNext.bind(this)}
         getPrevious={this.getPrevious.bind(this)}
         sort={this.state.sort}
         sortByNew={this.sortByNew.bind(this)}
-        sortByBest={this.sortByNew.bind(this)}
+        sortByBest={this.sortByBest.bind(this)}
         getPage={this.getPage.bind(this)}
         groups={this.state.groups}
         currentGroup={this.state.currentGroup}
+        showSort={this.state.showSort}
+        openSort={this.openSort}
+        closeSort={this.closeSort}
         />
       </div>
     )

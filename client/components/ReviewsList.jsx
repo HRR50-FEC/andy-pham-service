@@ -25,12 +25,7 @@ const DropdownMenu = styled.div`
 `
 
 const Sorts = styled.div`
-  display: none;
   position: absolute;
-
-  ${DropdownMenu}:active & {
-    display: block;
-  }
 `
 
 const Button = styled.button`
@@ -42,12 +37,18 @@ const Pages = styled.div`
 
 `
 
-var ReviewsList = (props) => (
+var ReviewsList = (props) => {
+  var sortingMenu = null;
+  if (props.showSort) {
+    sortingMenu = <Sorts><div onClick={props.sortByNew}>New</div><div onClick={props.sortByBest}>Best</div></Sorts>
+  }
+
+  return(
   <Container>
-    <Button onClick={() => {props.sortByNew()}}>New</Button>
-    <Button onClick={() => {props.sortByBest()}}>Best</Button>
     <Sorting>
-      <DropdownMenu>Sort By: <Sorts>123</Sorts></DropdownMenu>
+      <DropdownMenu onClick={props.openSort}>Sort By:
+        {sortingMenu}
+      </DropdownMenu>
     </Sorting>
     {props.reviews.map((review) => (
       <Reviews key={review._id}
@@ -59,9 +60,12 @@ var ReviewsList = (props) => (
       date={review.date}
       color={review.color} />
     ))}
+    <nav>
     <Button onClick={() => {props.getPrevious(props.sort)}}>Previous</Button>
     <Button onClick={() => {props.getNext(props.sort)}}>Next</Button>
+    </nav>
   </Container>
-)
+  )
+}
 
 export default ReviewsList;
