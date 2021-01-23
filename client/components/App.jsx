@@ -10,8 +10,8 @@ class App extends React.Component {
       sort: 'default',
       product: 1,
       default: [],
-      new: [],
-      best: [],
+      New: [],
+      Best: [],
       currentReviews: [],
       currentGroup: 0,
       groups: 0,
@@ -55,17 +55,17 @@ class App extends React.Component {
 
     requests.get('new', this.state.product, (data) => {
       var reviewData = [...data];
-      var newData = makeGroups(reviewData);
+      var NewData = makeGroups(reviewData);
       this.setState({
-        new: newData
+        New: NewData
       })
     })
 
     requests.get('best', this.state.product, (data) => {
       var reviewData = [...data];
-      var bestData = makeGroups(reviewData);
+      var BestData = makeGroups(reviewData);
       this.setState({
-        best: bestData
+        Best: BestData
       })
     })
   };
@@ -102,16 +102,16 @@ class App extends React.Component {
 
   sortByNew() {
     this.setState({
-      sort: 'new',
-      currentReviews: this.state.new[0],
+      sort: 'New',
+      currentReviews: this.state.New[0],
       currentGroup: 0
     })
   }
 
   sortByBest() {
     this.setState({
-      sort: 'best',
-      currentReviews: this.state.best[0],
+      sort: 'Best',
+      currentReviews: this.state.Best[0],
       currentGroup: 0
     })
   }

@@ -16,23 +16,38 @@ const Page = styled.button`
   margin-right: 6px;
   width: 36px;
   height: 42px;
+  background-color: white;
+  outline: none;
+  border-radius: 50%;
+  transition: background-color 0.1s;
+  cursor: pointer;
+
+  &:hover {
+    background: #eeeeee;
+    border-radius: 50%;
+  }
 `
 
 const ActivePage = styled.button`
   font-size: 14px;
   line-height: 1.4;
   margin-right: 6px;
+  background-color: #eeeeee;
   width: 36px;
   height: 42px;
-  background:
+  outline: none;
+  border-radius: 50%;
+  cursor: default;
 `
 
 const Ellipsis = styled.div`
-  font-size: 14px;
+  font-size: 28px;
   line-height: 1.4;
   margin-right: 6px;
   width: 36px;
   height: 42px;
+  text-align: center;
+  border-radius: 50%;
 `
 
 const LeftArrow = styled.button`
@@ -41,6 +56,16 @@ const LeftArrow = styled.button`
   margin-right: 6px;
   width: 36px;
   height: 42px;
+  background-color: white;
+  outline: none;
+  border-radius: 50%;
+  transition: background-color 0.1s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eeeeee;
+    border-radius: 50%;
+  }
 `
 
 const RightArrow = styled.button`
@@ -49,6 +74,39 @@ const RightArrow = styled.button`
   margin-right: 6px;
   width: 36px;
   height: 42px;
+  outline: none;
+  background-color: white;
+  border-radius: 50%;
+  transition: background-color 0.1s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eeeeee;
+  }
+`
+
+const BlockedLeftArrow = styled.button`
+  background-image: url(https://cdn.iconscout.com/icon/free/png-256/left-arrow-1965039-1660432.png);
+  background-size: contain;
+  margin-right: 6px;
+  width: 36px;
+  background-color: white;
+  outline: none;
+  border-radius: 50%;
+  height: 42px;
+  cursor: not-allowed;
+`
+
+const BlockedRightArrow= styled.button`
+  background-image: url(https://www.clipartmax.com/png/middle/52-527143_arrow-clipart-transparent-background-right-arrow-icon.png);
+  background-size: contain;
+  margin-right: 6px;
+  width: 36px;
+  background-color: white;
+  height: 42px;
+  outline: none;
+  border-radius: 50%;
+  cursor: not-allowed;
 `
 
 const Image = styled.img`
@@ -66,7 +124,7 @@ var Pagination = (props) => {
     console.log(number);
     if (number === 1) {
       if (props.currentGroup === 0) {
-        return (<Page key={number}>{number}</Page>)
+        return (<ActivePage key={number}>{number}</ActivePage>)
       } else {
         return (<Page key={number} onClick={() => {props.getPage(number)}} >{number}</Page>)
       }
@@ -74,7 +132,7 @@ var Pagination = (props) => {
     if (number === 2) {
       if (props.groups > 2) {
         if (props.currentGroup === 1) {
-          return (<Page key={number}>{number}</Page>)
+          return (<ActivePage key={number}>{number}</ActivePage>)
         }
         if (props.currentGroup === 0) {
           return (<Page key={number} onClick={() => {
@@ -85,7 +143,7 @@ var Pagination = (props) => {
     if (props.groups > 2) {
       if (number === props.groups) {
         if (number === props.currentGroup + 1) {
-          return (<Page key={number}>{number}</Page>)
+          return (<ActivePage key={number}>{number}</ActivePage>)
         }
         if (number !== props.currentGroup + 1) {
           return (<Page key={number} onClick={() => {
@@ -95,7 +153,7 @@ var Pagination = (props) => {
 
       if (number === props.groups - 1) {
         if (number === props.currentGroup + 1) {
-          return (<Page key={number}>{number}</Page>)
+          return (<ActivePage key={number}>{number}</ActivePage>)
         }
         if (props.groups === props.currentGroup + 1) {
           return (<Page key={number} onClick={() => {
@@ -105,7 +163,7 @@ var Pagination = (props) => {
 
       if (props.currentGroup + 1 < props.groups - 1) {
         if (number === props.currentGroup + 1) {
-          return (<Page key={number}>{number}</Page>)
+          return (<ActivePage key={number}>{number}</ActivePage>)
         }
         if (props.currentGroup === 0 && number === 3) {
           return (<Ellipsis>...</Ellipsis>)
@@ -121,12 +179,20 @@ var Pagination = (props) => {
       }
     }
   })
+  var left = <LeftArrow onClick={() => {props.getPrevious()}} />;
+  var right = <RightArrow onClick={props.getNext} />;
 
+  if (props.currentGroup === 0) {
+    left = <BlockedLeftArrow />
+  }
+  if (props.currentGroup + 1 === props.groups) {
+    right = <BlockedRightArrow />
+  }
   return (
     <Nav>
-        <LeftArrow onClick={() => {props.getPrevious()}} />
+        {left}
         {pages}
-        <RightArrow onClick={props.getNext} />
+        {right}
     </Nav>
   )
 }

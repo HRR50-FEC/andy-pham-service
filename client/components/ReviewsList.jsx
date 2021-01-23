@@ -16,17 +16,25 @@ const Sorting = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
 `
 
 const DropdownMenu = styled.div`
   width: 200.797px;
   height: 42px;
   text-align: center;
+  transition: background-color 0.1s;
+  cursor: pointer;
+
+  &:hover {
+    background: #eeeeee;
+    border-radius: 50%;
+  }
 
 `
 
 const Sorts = styled.div`
-  position: absolute;
+  text-align: center;
 `
 
 var ReviewsList = (props) => {
@@ -34,11 +42,14 @@ var ReviewsList = (props) => {
   if (props.showSort) {
     sortingMenu = <Sorts><div onClick={props.sortByNew}>New</div><div onClick={props.sortByBest}>Best</div></Sorts>
   }
-
+  var sort = null;
+  if (props.sort !== 'default') {
+    sort = props.sort;
+  }
   return(
   <Container>
     <Sorting>
-      <DropdownMenu onClick={props.openSort}>Sort By:
+      <DropdownMenu onClick={props.openSort}>Sort By: {sort}
         {sortingMenu}
       </DropdownMenu>
     </Sorting>
