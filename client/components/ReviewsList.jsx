@@ -1,6 +1,7 @@
 import React from 'react';
 import Reviews from './reviews.jsx';
 import styled, { css } from 'styled-components';
+import Pagination from './pagination.jsx';
 
 const Container = styled.div`
   display: grid;
@@ -28,15 +29,6 @@ const Sorts = styled.div`
   position: absolute;
 `
 
-const Button = styled.button`
-  height: 100px;
-  width: 100px;
-`
-
-const Pages = styled.div`
-
-`
-
 var ReviewsList = (props) => {
   var sortingMenu = null;
   if (props.showSort) {
@@ -60,10 +52,13 @@ var ReviewsList = (props) => {
       date={review.date}
       color={review.color} />
     ))}
-    <nav>
-    <Button onClick={() => {props.getPrevious(props.sort)}}>Previous</Button>
-    <Button onClick={() => {props.getNext(props.sort)}}>Next</Button>
-    </nav>
+    <Pagination getNext={props.getNext}
+    getPrevious={props.getPrevious}
+    currentGroup={props.currentGroup}
+    groups={props.groups}
+    sort={props.sort}
+    getPage={props.getPage}
+    />
   </Container>
   )
 }

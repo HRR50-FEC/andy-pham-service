@@ -70,7 +70,8 @@ class App extends React.Component {
     })
   };
 
-  getNext(sort) {
+  getNext() {
+    var sort = this.state.sort;
     if (this.state.currentGroup + 1 === this.state[sort].length) {
       this.setState({
         currentReviews: this.state[sort][0],
@@ -84,7 +85,8 @@ class App extends React.Component {
     }
   }
 
-  getPrevious(sort) {
+  getPrevious() {
+    var sort = this.state.sort;
     if (this.state.currentGroup === 0) {
       this.setState({
         currentReviews: this.state[sort][this.state[sort].length - 1],
@@ -107,7 +109,6 @@ class App extends React.Component {
   }
 
   sortByBest() {
-    console.log(this.state.best);
     this.setState({
       sort: 'best',
       currentReviews: this.state.best[0],
@@ -118,8 +119,8 @@ class App extends React.Component {
   getPage(page) {
     var sort = this.state.sort;
     this.setState({
-      currentReviews: this.state[sort][page],
-      currentGroup: page
+      currentReviews: this.state[sort][page - 1],
+      currentGroup: page - 1
     })
   }
 
@@ -136,7 +137,6 @@ class App extends React.Component {
 
   closeSort() {
     if (this.state.showSort === true) {
-      console.log(this.state.showSort);
       this.setState({
         showSort: false
       });
