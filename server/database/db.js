@@ -12,7 +12,7 @@ const reviewSchema = new mongoose.Schema({
   stars: {type: Number, default: rng.stars},
   imageUrl: {type: String, default: rng.product},
   body: {type: String, default: faker.lorem.sentences},
-  date: {type: String, default: rng.date},
+  date: {type: Date, default: rng.date},
   productId: {type: Number, default: rng.productId},
   color: {type: String, default: rng.color}
 });

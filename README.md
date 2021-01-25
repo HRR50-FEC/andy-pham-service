@@ -4,10 +4,8 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/HRR50-FEC/nathansheets-service
+  - https://github.com/HRR50-FEC/mick-service
 
 ## Table of Contents
 
@@ -17,7 +15,14 @@
 
 ## Usage
 
-> Some usage instructions
+> To start
+```
+npm run db-build
+npm start
+npm run build
+```
+
+In order, this will seed the database, start the local server, and have webpack begin to bundle the files together while continously bundling the files as changes are made.
 
 ## Requirements
 

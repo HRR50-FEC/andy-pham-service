@@ -96,9 +96,11 @@ var color = function () {
 };
 
 var date = function () {
-  // Creates a recent date and converts it to Month Day, Year. Like Jan, 11th, 2021
-  var date = faker.date.recent();
-  return moment(date).format("MMM Do, YYYY")
+  // Creates a random date between a random date 2 years ago and a recent date, and converts it to Year-Month-Day for Mongoose sorting. Like 2021-01-05 \.
+  var pastDate = faker.date.past(2);
+  var recentDate = faker.date.recent();
+  var date = faker.date.between(pastDate, recentDate);
+  return moment(date).format("YYYY-MM-D");
 }
 
 module.exports.dp = dp;

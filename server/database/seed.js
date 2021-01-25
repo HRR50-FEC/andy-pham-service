@@ -36,6 +36,7 @@ const lyrics = [
     username: 'Tellme Why',
     color: null,
     stars: 1,
+    imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a heartache`
   },
@@ -43,6 +44,7 @@ const lyrics = [
     username: 'Tellme Why',
     color: null,
     stars: 1,
+    imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a mistake`
   },
@@ -50,6 +52,7 @@ const lyrics = [
     username: 'Tellme Why',
     color: null,
     stars: 1,
+    imageUrl: null,
     productId: 1,
     body: `I never wanna hear you say
 
@@ -75,6 +78,7 @@ const lyrics = [
     username: 'Tellme Why',
     color: null,
     stars: 2,
+    imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a heartache`
   },
@@ -82,6 +86,7 @@ const lyrics = [
     username: 'Tellme Why',
     color: null,
     stars: 2,
+    imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a mistake`
   },
@@ -89,6 +94,7 @@ const lyrics = [
     username: 'Tellme Why',
     color: null,
     stars: 2,
+    imageUrl: null,
     productId: 1,
     body: `I never wanna hear you say
 
@@ -98,6 +104,7 @@ const lyrics = [
     username: 'NowI Cansee',
     color: null,
     stars: 2,
+    imageUrl: null,
     productId: 1,
     body: `that we've fallen apart
     from the way that it used to be
@@ -148,6 +155,7 @@ const lyrics = [
     username: 'Tellme Why',
     color: null,
     stars: 3,
+    imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a heartache`
   },
@@ -155,6 +163,7 @@ const lyrics = [
     username: 'Tellme Why',
     color: null,
     stars: 3,
+    imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a mistake`
   },
@@ -162,6 +171,7 @@ const lyrics = [
     username: 'Tellme Why',
     color: null,
     stars: 5,
+    imageUrl: null,
     productId: 1,
     body: `I never wanna hear you say
     (Don't wanna hear you say)
@@ -228,6 +238,7 @@ const lyrics = [
     color: null,
     stars: 5,
     productId: 1,
+    imageUrl: null,
     body: `Give you up
     Never gonna let you down
     Never gonna run around, and desert you
