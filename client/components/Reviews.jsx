@@ -65,14 +65,27 @@ const Text = styled.p`
 `
 
 const Ellipsis = styled.img`
-  background-image: url(data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 24 24%22 aria-hidden%3D%22true%22 focusable%3D%22false%22 style%3D%22display%3A inline-block%3B height%3A 24px%3B vertical-align%3A middle%3B%22%3E%3Ccircle cx%3D%2212.0%22 cy%3D%2212.001%22 r%3D%222.71%22%2F%3E%3Ccircle cy%3D%2212.001%22 cx%3D%224.0%22 r%3D%222.71%22%2F%3E%3Ccircle cx%3D%2220.0%22 cy%3D%2212.001%22 r%3D%222.71%22%2F%3E%3C%2Fsvg%3E);
-  background-size: contain;
+  object-size: fill;
   display: block;
   align-self: center;
   align-items: flex-start;
   float: right;
   width: 36px;
   height: 21px;
+  transition: background-color 0.1s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eeeeee;
+    border-radius: 50%;
+  }
+`
+
+const Username = styled.a`
+  &:link :visited :active{
+    color: rgb(89, 89, 89);
+  }
+  cursor: pointer;
 `
 
 const Header = styled.div`
@@ -84,6 +97,12 @@ class Reviews extends React.Component {
     super();
     this.state = {
       hidden: true
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.body.length < 74) {
+      this.showText();
     }
   }
 
@@ -108,14 +127,14 @@ class Reviews extends React.Component {
       color = `Color: ${this.props.color}`;
     }
     if (this.props.body.length > 74) {
-      ellipsis = <Ellipsis onClick={this.showText.bind(this)}></Ellipsis>
+      ellipsis = <Ellipsis src='https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/41104-200.png' onClick={this.showText.bind(this)}></Ellipsis>
     }
     if (this.state.hidden) {
       return (
         <div>
         <FlexHeader>
           <div><DP src={this.props.userDP}></DP></div>
-          <Header><p><a><u>{this.props.username}</u></a>    {moment(this.props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</p></Header>
+          <Header><p><Username href={this.props.userDP}>{this.props.username}</Username>    {moment(this.props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</p></Header>
         </FlexHeader>
         <FlexBody>
           <Body>
@@ -138,7 +157,7 @@ class Reviews extends React.Component {
         <div>
         <FlexHeader>
           <div><DP src={this.props.userDP}></DP></div>
-          <Header><p><u>{this.props.username}</u>    {moment(this.props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</p></Header>
+          <Header><p><Username href={this.props.userDP}>{this.props.username}</Username>    {moment(this.props.date, 'YYYY-MM-D').format("MMM Do YYYY")}</p></Header>
         </FlexHeader>
         <FlexBody>
           <Body>

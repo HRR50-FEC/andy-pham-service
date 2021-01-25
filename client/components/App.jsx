@@ -15,7 +15,9 @@ class App extends React.Component {
       currentReviews: [],
       currentGroup: 0,
       groups: 0,
-      showSort: false
+      showSort: false,
+      average: 0,
+      reviews: 0
     }
     this.openSort = this.openSort.bind(this);
     this.closeSort = this.closeSort.bind(this);
@@ -45,11 +47,13 @@ class App extends React.Component {
 
     requests.get('default', this.state.product, (data) => {
       var reviewData = [...data];
+      this.getAverage(reviewData);
       var defaultData = makeGroups(reviewData);
       this.setState({
         default: defaultData,
         currentReviews: [...data.splice(0, 4)],
-        groups: defaultData.length
+        groups: defaultData.length,
+        reviews: reviewData.length
       })
     })
 
@@ -116,6 +120,17 @@ class App extends React.Component {
     })
   }
 
+  getAverage(reviews) {
+    var result = 0;
+    for (var i = 0; i < reviews.length; i++) {
+      result += reviews[i].stars;
+    }
+    result = result / reviews.length;
+    this.setState({
+      average: result
+    })
+  }
+
   getPage(page) {
     var sort = this.state.sort;
     this.setState({
@@ -157,6 +172,8 @@ class App extends React.Component {
         showSort={this.state.showSort}
         openSort={this.openSort}
         closeSort={this.closeSort}
+        averageStars={this.state.average}
+        reviewCount={this.state.reviews}
         />
       </div>
     )

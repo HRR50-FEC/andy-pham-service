@@ -51,7 +51,7 @@ const Ellipsis = styled.div`
 `
 
 const LeftArrow = styled.button`
-  background-image: url(https://cdn.iconscout.com/icon/free/png-256/left-arrow-1965039-1660432.png);
+  background-image: url(https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/left-arrow-1965039-1660432.webp);
   background-size: contain;
   margin-right: 6px;
   width: 36px;
@@ -69,7 +69,7 @@ const LeftArrow = styled.button`
 `
 
 const RightArrow = styled.button`
-  background-image: url(https://www.clipartmax.com/png/middle/52-527143_arrow-clipart-transparent-background-right-arrow-icon.png);
+  background-image: url(https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/52-527143_arrow-clipart-transparent-background-right-arrow-icon.png);
   background-size: contain;
   margin-right: 6px;
   width: 36px;
@@ -86,7 +86,7 @@ const RightArrow = styled.button`
 `
 
 const BlockedLeftArrow = styled.button`
-  background-image: url(https://cdn.iconscout.com/icon/free/png-256/left-arrow-1965039-1660432.png);
+  background-image: url(https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/left-arrow-1965039-1660432.webp);
   background-size: contain;
   margin-right: 6px;
   width: 36px;
@@ -98,7 +98,7 @@ const BlockedLeftArrow = styled.button`
 `
 
 const BlockedRightArrow= styled.button`
-  background-image: url(https://www.clipartmax.com/png/middle/52-527143_arrow-clipart-transparent-background-right-arrow-icon.png);
+  background-image: url(https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/52-527143_arrow-clipart-transparent-background-right-arrow-icon.png);
   background-size: contain;
   margin-right: 6px;
   width: 36px;

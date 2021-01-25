@@ -20,9 +20,9 @@ const Sorting = styled.div`
 `
 
 const DropdownMenu = styled.div`
-  width: 200.797px;
   height: 42px;
-  text-align: center;
+  font-size: 25px;
+  text-align: left;
   transition: background-color 0.1s;
   cursor: pointer;
 
@@ -34,18 +34,28 @@ const DropdownMenu = styled.div`
 `
 
 const Sorts = styled.div`
-  text-align: center;
+  text-align: left;
 `
+const CurrentSort = styled.div`
+
+`
+
 
 var ReviewsList = (props) => {
   var sortingMenu = null;
   if (props.showSort) {
-    sortingMenu = <Sorts><div onClick={props.sortByNew}>New</div><div onClick={props.sortByBest}>Best</div></Sorts>
+    sortingMenu = <Sorts key="New"><div onClick={props.sortByNew}>New</div><div onClick={props.sortByBest}>Best</div></Sorts>
   }
   var sort = null;
   if (props.sort !== 'default') {
     sort = props.sort;
   }
+
+  var stars = '★'.repeat(props.averageStars);
+    if (stars.length < 5) {
+      stars += '☆'.repeat(5 - props.averageStars);
+    }
+
   return(
   <Container>
     <Sorting>
@@ -53,6 +63,7 @@ var ReviewsList = (props) => {
         {sortingMenu}
       </DropdownMenu>
     </Sorting>
+    <div>{props.reviewCount} item reviews {stars}</div>
     {props.reviews.map((review) => (
       <Reviews key={review._id}
       username={review.username}

@@ -17,7 +17,14 @@
 
 ## Usage
 
-> Some usage instructions
+> To start
+```
+npm run db-build
+npm start
+npm run build
+```
+
+In order, this will seed the database, start the local server, and have webpack begin to bundle the files together while continously bundling the files as changes are made.
 
 ## Requirements
 
