@@ -4,10 +4,8 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/HRR50-FEC/nathansheets-service
+  - https://github.com/HRR50-FEC/mick-service
 
 ## Table of Contents
 
