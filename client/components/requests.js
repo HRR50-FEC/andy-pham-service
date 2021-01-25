@@ -3,7 +3,7 @@ import $ from 'jquery';
 var requests = {
   get: function(url, product, success, error = null) {
     $.ajax({
-      url: `/${url}/${product}`,
+      url: `http://localhost:8080/${url}/${product}`,
       type: 'GET',
       success: success,
       error: error || function() {

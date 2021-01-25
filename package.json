@@ -13,6 +13,7 @@
     "db-build": "node server/database/seed.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "faker": "^5.1.0",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
