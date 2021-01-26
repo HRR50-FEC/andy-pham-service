@@ -1,6 +1,6 @@
 import React from 'react';
 import requests from './requests.js';
-import ReviewsList from './reviewslist.jsx';
+import ReviewsList from './ReviewsList.jsx';
 import Moment from 'moment';
 
 class App extends React.Component {

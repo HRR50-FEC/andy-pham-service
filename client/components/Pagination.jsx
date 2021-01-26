@@ -121,7 +121,6 @@ var Pagination = (props) => {
   };
 
   var pages = pageNumbers.map((number) => {
-    console.log(number);
     if (number === 1) {
       if (props.currentGroup === 0) {
         return (<ActivePage key={number}>{number}</ActivePage>)
@@ -166,15 +165,15 @@ var Pagination = (props) => {
           return (<ActivePage key={number}>{number}</ActivePage>)
         }
         if (props.currentGroup === 0 && number === 3) {
-          return (<Ellipsis>...</Ellipsis>)
+          return (<Ellipsis key={number}>...</Ellipsis>)
         }
         if (number === props.currentGroup || number === props.currentGroup + 2) {
-          return (<Ellipsis>...</Ellipsis>)
+          return (<Ellipsis key={number}>...</Ellipsis>)
         }
       }
       if (props.currentGroup + 1 === props.groups || props.currentGroup + 1 === props.groups - 1) {
         if (number === props.groups - 2) {
-          return (<Ellipsis>...</Ellipsis>)
+          return (<Ellipsis key={number}>...</Ellipsis>)
         }
       }
     }

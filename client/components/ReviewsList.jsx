@@ -1,7 +1,7 @@
 import React from 'react';
-import Reviews from './reviews.jsx';
+import Reviews from './Reviews.jsx';
 import styled, { css } from 'styled-components';
-import Pagination from './pagination.jsx';
+import Pagination from './Pagination.jsx';
 
 const Container = styled.div`
   display: grid;
