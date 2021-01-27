@@ -14,16 +14,17 @@ const Page = styled.button`
   font-size: 14px;
   line-height: 1.4;
   margin-right: 6px;
-  width: 36px;
-  height: 42px;
-  background-color: white;
+  min-width: 36px;
+  height: 36px;
+  color: rgb(34, 34, 34);
   outline: none;
+  border: none;
   border-radius: 50%;
   transition: background-color 0.1s;
   cursor: pointer;
 
   &:hover {
-    background: #eeeeee;
+    background: rgba(34, 34, 34, 0.15);
     border-radius: 50%;
   }
 `
@@ -32,11 +33,13 @@ const ActivePage = styled.button`
   font-size: 14px;
   line-height: 1.4;
   margin-right: 6px;
-  background-color: #eeeeee;
-  width: 36px;
-  height: 42px;
+  border-color: rgb(34, 34, 34);
+  background: gray;
+  min-width: 36px;
+  height: 36px;
+  border: none;
   outline: none;
-  border-radius: 50%;
+  border-radius: 24px;
   cursor: default;
 `
 
@@ -44,74 +47,91 @@ const Ellipsis = styled.div`
   font-size: 28px;
   line-height: 1.4;
   margin-right: 6px;
-  width: 36px;
-  height: 42px;
+  width: 15;
+  height: 36px;
   text-align: center;
   border-radius: 50%;
 `
 
 const LeftArrow = styled.button`
-  background-image: url(https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/left-arrow-1965039-1660432.webp);
-  background-size: contain;
+  font-size: 14px;
+  line-height: 1.4;
   margin-right: 6px;
-  width: 36px;
-  height: 42px;
-  background-color: white;
+  min-width: 36px;
+  height: 36px;
+  color: rgb(34, 34, 34);
   outline: none;
+  border: none;
   border-radius: 50%;
   transition: background-color 0.1s;
   cursor: pointer;
 
   &:hover {
-    background-color: #eeeeee;
+    background: rgba(34, 34, 34, 0.15);
     border-radius: 50%;
   }
 `
 
 const RightArrow = styled.button`
-  background-image: url(https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/52-527143_arrow-clipart-transparent-background-right-arrow-icon.png);
-  background-size: contain;
+  font-size: 14px;
+  line-height: 1.4;
   margin-right: 6px;
-  width: 36px;
-  height: 42px;
+  min-width: 36px;
+  height: 36px;
+  color: rgb(34, 34, 34);
   outline: none;
-  background-color: white;
+  border: none;
   border-radius: 50%;
   transition: background-color 0.1s;
   cursor: pointer;
 
   &:hover {
-    background-color: #eeeeee;
+    background: rgba(34, 34, 34, 0.15);
+    border-radius: 50%;
   }
 `
 
 const BlockedLeftArrow = styled.button`
-  background-image: url(https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/left-arrow-1965039-1660432.webp);
-  background-size: contain;
+  font-size: 14px;
+  line-height: 1.4;
   margin-right: 6px;
-  width: 36px;
-  background-color: white;
+  min-width: 36px;
+  height: 36px;
+  color: gray;
   outline: none;
+  border: none;
   border-radius: 50%;
-  height: 42px;
+  transition: background-color 0.1s;
   cursor: not-allowed;
+
+  &:hover {
+    background: rgba(34, 34, 34, 0.15);
+    border-radius: 50%;
+  }
 `
 
 const BlockedRightArrow= styled.button`
-  background-image: url(https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/52-527143_arrow-clipart-transparent-background-right-arrow-icon.png);
-  background-size: contain;
+  font-size: 14px;
+  line-height: 1.4;
   margin-right: 6px;
-  width: 36px;
-  background-color: white;
-  height: 42px;
+  min-width: 36px;
+  height: 36px;
+  color: gray;
   outline: none;
+  border: none;
   border-radius: 50%;
+  transition: background-color 0.1s;
   cursor: not-allowed;
+
+  &:hover {
+    background: rgba(34, 34, 34, 0.15);
+    border-radius: 50%;
+  }
 `
 
 const Image = styled.img`
-  width: 36px;
-  height: 42px;
+  min-width: 36px;
+  min-height: 36px;
 `
 
 var Pagination = (props) => {
@@ -178,14 +198,14 @@ var Pagination = (props) => {
       }
     }
   })
-  var left = <LeftArrow onClick={() => {props.getPrevious()}} />;
-  var right = <RightArrow onClick={props.getNext} />;
+  var left = <LeftArrow onClick={() => {props.getPrevious()}} >←</LeftArrow>;
+  var right = <RightArrow onClick={props.getNext}>→</RightArrow>;
 
   if (props.currentGroup === 0) {
-    left = <BlockedLeftArrow />
+    left = <BlockedLeftArrow>←</BlockedLeftArrow>
   }
   if (props.currentGroup + 1 === props.groups) {
-    right = <BlockedRightArrow />
+    right = <BlockedRightArrow>→</BlockedRightArrow>
   }
   return (
     <Nav>

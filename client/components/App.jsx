@@ -24,7 +24,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.setUpReviews();
+  };
 
+  setUpReviews() {
     var makeGroups = (reviews) => {
       var reviewGroups = [];
       var reviewGroup = [];
@@ -72,7 +75,7 @@ class App extends React.Component {
         Best: BestData
       })
     })
-  };
+  }
 
   getNext() {
     var sort = this.state.sort;
