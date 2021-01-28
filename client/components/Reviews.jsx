@@ -57,11 +57,12 @@ const HiddenText = styled.div`
   text-overflow: ellipsis;
 `
 
-const Text = styled.p`
+const Text = styled.div`
   height: 72px;
   width: 505.5px;
   margin-right: 48px;
   white-space: normal;
+  position: absolute;
 `
 
 const Ellipsis = styled.img`
@@ -72,6 +73,8 @@ const Ellipsis = styled.img`
   float: right;
   width: 36px;
   height: 21px;
+  background-color: white;
+  border: none;
   transition: background-color 0.1s;
   cursor: pointer;
 
