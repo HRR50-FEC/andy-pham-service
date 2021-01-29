@@ -24,4 +24,4 @@ coverage
 build/
 dist/
 public/app.js
-
+*.pem
