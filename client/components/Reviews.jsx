@@ -49,15 +49,16 @@ const TextContainer = styled.div`
 `
 
 const HiddenText = styled.div`
+  font-size: 16px;
   height: 72px;
   width: 505.5px;
-  margin-right: 48px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `
 
 const Text = styled.div`
+  font-size: 16px;
   height: 72px;
   width: 505.5px;
   margin-right: 48px;
@@ -67,12 +68,14 @@ const Text = styled.div`
 
 const Ellipsis = styled.img`
   object-size: fill;
-  display: block;
+  margin-left: 505.5px;
+  position: relative;
   align-self: center;
-  align-items: flex-start;
+  right: -20px;
   float: right;
   width: 36px;
   height: 21px;
+  z-index: 1;
   background-color: white;
   border: none;
   transition: background-color 0.1s;
@@ -104,7 +107,7 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.body.length < 74) {
+    if (this.props.body.length < 100) {
       this.showText();
     }
   }
@@ -129,7 +132,7 @@ class Reviews extends React.Component {
     if (this.props.color !== null) {
       color = `Color: ${this.props.color}`;
     }
-    if (this.props.body.length > 74) {
+    if (this.props.body.length > 100) {
       ellipsis = <Ellipsis src='https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/41104-200.png' onClick={this.showText.bind(this)}></Ellipsis>
     }
     if (this.state.hidden) {

@@ -78,6 +78,7 @@ class App extends React.Component {
   }
 
   getNext() {
+    document.getElementById('reviewsSection').scrollIntoView({behavior: 'smooth'});
     var sort = this.state.sort;
     if (this.state.currentGroup + 1 === this.state[sort].length) {
       this.setState({
@@ -93,6 +94,7 @@ class App extends React.Component {
   }
 
   getPrevious() {
+    document.getElementById('reviewsSection').scrollIntoView({behavior: 'smooth'});
     var sort = this.state.sort;
     if (this.state.currentGroup === 0) {
       this.setState({
@@ -135,6 +137,7 @@ class App extends React.Component {
   }
 
   getPage(page) {
+    document.getElementById('reviewsSection').scrollIntoView({behavior: 'smooth'});
     var sort = this.state.sort;
     this.setState({
       currentReviews: this.state[sort][page - 1],

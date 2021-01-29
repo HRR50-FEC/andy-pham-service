@@ -5,7 +5,6 @@ import Pagination from './Pagination.jsx';
 
 const Container = styled.div`
   display: grid;
-  height: 1151.69px;
   width: 810px;
   grid: auto auto auto auto;
   grid-gap: 30px;
@@ -23,7 +22,7 @@ const DropdownMenu = styled.div`
   font-size: 13px;
   display: flex;
   height: auto;
-  min-width: 36px;
+  min-width: 32px;
   padding-top: 9px;
   padding-bottom: 9px;
   padding-left: 15px;
@@ -33,6 +32,7 @@ const DropdownMenu = styled.div`
   transition: background-color 0.1s;
   cursor: pointer;
   justify-content: space-between;
+  flex-wrap: wrap;
   flex-direction: column;
   border-radius: 4px;
   transform: scaleX(1) scaleY(1) perspective(1px);
@@ -64,15 +64,8 @@ const ActiveMenu = styled.div`
   border: 1px rgba(34, 34, 34, 0.15) solid;
   box-shadow: 0 4px 20px rgba(34, 34, 34, 0.15);
   max-width: 300px;
-  transform-origin: top left;
-  transform: scaleX(1) scaleY(1) perspective(1px);
-  transition: transform 180ms ease-out,transform 180ms cubic-bezier(0.175, 0.885, 0.4, 1.1);
   z-index: 1;
 
-  :hover {
-    transform: scaleX(1) scaleY(1) perspective(1px);
-    transform-origin: top left;
-  }
 `
 
 const Sorts = styled.div`
@@ -90,25 +83,34 @@ const SortingMethod = styled.a`
   min-width: auto;
   padding-up: 12px;
   padding-down: 12px;
-  padding-left: 18px;
-  padding-right: 18px;
   z-index: 1;
   &:hover {
     background: #eeeeee;
   }
 `
-
+const Header = styled.div`
+  font-size: 26px;
+  position: absolute;
+  align-self: flex-start;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 15px;
+  padding-right: 15px;
+`
+const Body = styled.div`
+  position: relative;
+`
 
 var ReviewsList = (props) => {
   var sortingMenu = null;
   if (props.sort !== 'default') {
     var sort = props.sort;
   }
-  var dropDownMenu = <DropdownMenu onClick={props.openSort}>Sort By: {sort}</DropdownMenu>;
+  var dropDownMenu = <DropdownMenu onClick={props.openSort}><b>Sort By: {sort}</b></DropdownMenu>;
 
   if (props.showSort) {
 
-    dropDownMenu = <ActiveMenu>Sort By: {sort}<br />
+    dropDownMenu = <ActiveMenu><b>Sort By: {sort}</b>
     <SortingMethod onClick={props.sortByNew}>New</SortingMethod>
     <SortingMethod onClick={props.sortByBest}>Best</SortingMethod></ActiveMenu>
   }
@@ -123,11 +125,13 @@ var ReviewsList = (props) => {
     }
 
   return(
-  <Container>
+  <Container id="reviewsSection">
+    <Header>{props.reviewCount} item reviews {stars}</Header>
+    <br/>
     <Sorting>
       {dropDownMenu}
     </Sorting>
-    <div>{props.reviewCount} item reviews {stars}</div>
+    <Body>
     {props.reviews.map((review) => (
       <Reviews key={review._id}
       username={review.username}
@@ -137,7 +141,8 @@ var ReviewsList = (props) => {
       body={review.body}
       date={review.date}
       color={review.color} />
-    ))}
+      ))}
+    </Body>
     <Pagination getNext={props.getNext}
     getPrevious={props.getPrevious}
     currentGroup={props.currentGroup}
