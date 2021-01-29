@@ -4,9 +4,7 @@ const rng = require('./randomdata.js');
 const lyrics = [
   {
     username: 'YouAre Myfire',
-    color: null,
     userDP: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Backstreet-Boys-dp.jpg',
-    stars: 1,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Desire+Quotes.jpg',
     body: `Believe
@@ -19,8 +17,6 @@ const lyrics = [
   },
   {
     username: 'Butwe Are',
-    color: null,
-    stars: 2,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Two+worlds+apart.jpg',
     body: `Can't reach to
@@ -34,24 +30,18 @@ const lyrics = [
   },
   {
     username: 'Tellme Why',
-    color: null,
-    stars: 1,
     imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a heartache`
   },
   {
     username: 'Tellme Why',
-    color: null,
-    stars: 1,
     imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a mistake`
   },
   {
     username: 'Tellme Why',
-    color: null,
-    stars: 1,
     imageUrl: null,
     productId: 1,
     body: `I never wanna hear you say
@@ -60,8 +50,6 @@ const lyrics = [
   },
   {
     username: 'AmI Your',
-    color: null,
-    stars: 1,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Fire.jpg',
     body: `Your one
@@ -76,24 +64,18 @@ const lyrics = [
   },
   {
     username: 'Tellme Why',
-    color: null,
-    stars: 2,
     imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a heartache`
   },
   {
     username: 'Tellme Why',
-    color: null,
-    stars: 2,
     imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a mistake`
   },
   {
     username: 'Tellme Why',
-    color: null,
-    stars: 2,
     imageUrl: null,
     productId: 1,
     body: `I never wanna hear you say
@@ -102,8 +84,6 @@ const lyrics = [
   },
   {
     username: 'NowI Cansee',
-    color: null,
-    stars: 2,
     imageUrl: null,
     productId: 1,
     body: `that we've fallen apart
@@ -112,8 +92,6 @@ const lyrics = [
   },
   {
     username: 'No Matter',
-    color: null,
-    stars: 3,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/apart.jpg',
     body: `I want you to know
@@ -121,8 +99,6 @@ const lyrics = [
   },
   {
     username: 'YouAre Myfire',
-    color: null,
-    stars: 1,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Desire+Quotes.jpg',
     body: `You are.repeat(4)
@@ -132,16 +108,12 @@ const lyrics = [
   },
   {
     username: `Aint Nothin`,
-    color: null,
-    stars: 3,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/but.jpg',
     body: `a heartache`
   },
   {
     username: `Aint Nothin`,
-    color: null,
-    stars: 3,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/but.jpg',
     body: `a mistake
@@ -153,24 +125,18 @@ const lyrics = [
   },
   {
     username: 'Tellme Why',
-    color: null,
-    stars: 3,
     imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a heartache`
   },
   {
     username: 'Tellme Why',
-    color: null,
-    stars: 3,
     imageUrl: null,
     productId: 1,
     body: `Ain't nothin' but a mistake`
   },
   {
     username: 'Tellme Why',
-    color: null,
-    stars: 5,
     imageUrl: null,
     productId: 1,
     body: `I never wanna hear you say
@@ -179,16 +145,12 @@ const lyrics = [
   },
   {
     username: `Tellmewhy Aint'Nothin`,
-    color: null,
-    stars: 5,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/but.jpg',
     body: `a heartache`
   },
   {
     username: `Aint Nothin`,
-    color: null,
-    stars: 1,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/but.jpg',
     body: `a mistake
@@ -202,26 +164,20 @@ const lyrics = [
   },
   {
     username: `Cause`,
-    color: null,
-    stars: 5,
     productId: 1,
     imageUrl: 'https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/I+want+it+that+way.jpg',
     body: ``
   },
   {
     username: `Trololol`,
-    color: null,
     userDP: `https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Trololol.jpg`,
-    stars: 5,
     productId: 1,
     imageUrl: `https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Trololol.jpg`,
     body: `Trolololololololololololololololol`
   },
   {
     username: `Rick Roll`,
-    color: null,
     userDP: `https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Rick+Roll.png`,
-    stars: 5,
     productId: 1,
     imageUrl: `https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Rick+Roll.png`,
     body: `We're no strangers to love
@@ -235,8 +191,6 @@ const lyrics = [
   },
   {
     username: `Nevergonna`,
-    color: null,
-    stars: 5,
     productId: 1,
     imageUrl: null,
     body: `Give you up
