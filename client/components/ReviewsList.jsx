@@ -101,6 +101,16 @@ const Body = styled.div`
   position: relative;
 `
 
+const Randomize = styled.button`
+  width: 150px;
+  opacity: 0;
+
+  &:hover {
+    background: #eeeeee;
+    opacity: 1;
+  }
+`
+
 var ReviewsList = (props) => {
   var sortingMenu = null;
   if (props.sort !== 'default') {
@@ -118,10 +128,9 @@ var ReviewsList = (props) => {
   if (props.sort !== 'default') {
     sort = props.sort;
   }
-
-  var stars = '★'.repeat(props.averageStars);
+  var stars = '★'.repeat(Math.floor(props.averageStars));
     if (stars.length < 5) {
-      stars += '☆'.repeat(5 - props.averageStars);
+      stars += '☆'.repeat(5 - Math.floor(props.averageStars));
     }
 
   return(
@@ -143,6 +152,7 @@ var ReviewsList = (props) => {
       color={review.color} />
       ))}
     </Body>
+    <Randomize onClick={props.getRandomProduct}>Randomize</Randomize>
     <Pagination getNext={props.getNext}
     getPrevious={props.getPrevious}
     currentGroup={props.currentGroup}

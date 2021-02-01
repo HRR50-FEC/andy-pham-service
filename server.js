@@ -22,7 +22,7 @@ app.get('/:sort/:productId', (req, res) => {
   var productId = Number(req.params.productId);
   // Will sort by default, best, or new with the productId that equals the productId coming in
   // if (sortBy === 'default') {
-    db.grab[`${sortBy}`](productId)
+    db.grab.default(productId)
       .then((results) => {
         res.json(results);
       })
