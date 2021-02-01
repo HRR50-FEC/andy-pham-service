@@ -158,6 +158,14 @@ var Pagination = (props) => {
             props.getPage(number)}} >{number}</Page>
           )}
         }
+      if (props.groups === 2) {
+        if (props.currentGroup === 1) {
+          return (<ActivePage key={number}>{number}</ActivePage>)
+        } else {
+          return (<Page key={number} onClick={() => {
+            props.getPage(number)}} >{number}</Page>
+          )}
+        }
       }
     if (props.groups > 2) {
       if (number === props.groups) {

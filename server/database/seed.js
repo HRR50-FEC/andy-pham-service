@@ -208,7 +208,7 @@ var createData = () => {
       console.log('Data created');
     })
     .catch(() => {
-      console.error('Data failed');
+      console.error('First Data failed');
     });
   database.insertMany(Array.apply(null, Array(77)))
     .then(() => {
@@ -216,8 +216,8 @@ var createData = () => {
       console.log('Second batch of data created');
     })
     .catch(() => {
-      console.error('Data failed');
-    })
+      console.error('Second Data failed');
+    });
 };
 
 createData();

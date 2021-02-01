@@ -27,7 +27,8 @@ class App extends React.Component {
     this.setUpReviews();
   };
 
-  setUpReviews() {
+  setUpReviews(product) {
+    product = product || this.state.product;
     var makeGroups = (reviews) => {
       var reviewGroups = [];
       var reviewGroup = [];
@@ -48,7 +49,7 @@ class App extends React.Component {
       return reviewGroups;
     }
 
-    requests.get('default', this.state.product, (data) => {
+    requests.get('default', product, (data) => {
       var reviewData = [...data];
       this.getAverage(reviewData);
       var defaultData = makeGroups(reviewData);
@@ -60,7 +61,7 @@ class App extends React.Component {
       })
     })
 
-    requests.get('new', this.state.product, (data) => {
+    requests.get('new', product, (data) => {
       var reviewData = [...data];
       var NewData = makeGroups(reviewData);
       this.setState({
@@ -68,7 +69,7 @@ class App extends React.Component {
       })
     })
 
-    requests.get('best', this.state.product, (data) => {
+    requests.get('best', product, (data) => {
       var reviewData = [...data];
       var BestData = makeGroups(reviewData);
       this.setState({
@@ -164,6 +165,17 @@ class App extends React.Component {
     };
   }
 
+  getRandomProduct() {
+    document.getElementById('reviewsSection').scrollIntoView({behavior: 'smooth'});
+    var randomProduct = Math.floor((Math.random() * 18) + 1);
+    this.setUpReviews(randomProduct);
+    this.setState({
+      sort: 'Best',
+      product: randomProduct,
+      currentGroup: 0
+    });
+  }
+
   render() {
     return(
       <div onClick={this.closeSort}>
@@ -180,6 +192,7 @@ class App extends React.Component {
         closeSort={this.closeSort}
         averageStars={this.state.average}
         reviewCount={this.state.reviews}
+        getRandomProduct={this.getRandomProduct.bind(this)}
         />
       </div>
     )
