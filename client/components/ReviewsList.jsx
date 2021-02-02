@@ -58,6 +58,7 @@ const ActiveMenu = styled.div`
   text-align: left;
   position: relative;
   flex-direction: column;
+  cursor: pointer;
   background: #FFF;
   justify-content: space-between;
   border-radius: 12px;
@@ -82,6 +83,7 @@ const SortingMethod = styled.a`
   float: left;
   min-width: auto;
   padding-up: 12px;
+  cursor: pointer;
   padding-down: 12px;
   z-index: 1;
   &:hover {
