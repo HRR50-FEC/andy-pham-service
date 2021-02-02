@@ -130,7 +130,7 @@ class Reviews extends React.Component {
       image = <Image src={this.props.imageUrl}/>
     }
     if (this.props.color !== null) {
-      color = <div style={{fontSize: "13px"}}><b>Color:</b> ${this.props.color}</div>
+      color = <div style={{fontSize: "13px"}}><b>Color:</b> {this.props.color}</div>
     }
     if (this.props.body.length > 100) {
       ellipsis = <Ellipsis src='https://hulks-rage-reviews-mockdata.s3.us-east-2.amazonaws.com/mockdata/Props/41104-200.png' onClick={this.showText.bind(this)}></Ellipsis>
