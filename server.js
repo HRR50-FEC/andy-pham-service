@@ -33,6 +33,7 @@ app.get('/:sort/:productId', (req, res) => {
       })
   // };
 
+
   // if (sortBy === 'best') {
   //   db.grab.best(productId)
   //     .then((results) => {
