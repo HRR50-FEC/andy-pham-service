@@ -4,9 +4,7 @@ const port = '8080';
 const db = require('./server/database/db.js');
 const cors = require('cors');
 
-app.use(cors({
-  origin: 'http://localhost:1111'
-}));
+app.use(cors());
 app.use('/', express.static('public'));
 app.use('/bundle', express.static('public/dist/app.js'));
 app.use(express.urlencoded({ extended: true }));
